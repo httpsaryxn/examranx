@@ -1,0 +1,232 @@
+/* You can change these variables to adjust the frame's appearance */
+:root {
+    --frame-inset: 20px;
+    --corner-cut: 30px;
+    --notch-depth: 18px;
+    --notch-width: 150px;
+    --top-notch-width: 80px;
+    --top-notch-height: 15px;
+}
+
+/* Basic page setup */
+body {
+    background-color: #050505;
+    background-image: 
+        linear-gradient(#5353531f 1px, transparent 1px),
+        linear-gradient(90deg, #5353531f 1px, transparent 1px);
+    background-size: 30px 30px;
+    margin: 0;
+    color: #fff;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* Wrapper for the initial viewport animation */
+.viewport-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 50;
+}
+
+/* The main container for the grey, clipped area */
+.clipped-container {
+    position: absolute;
+    inset: var(--frame-inset);
+    overflow: hidden;
+    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.4);
+    clip-path: polygon(
+        0% var(--corner-cut),var(--corner-cut) 0%,calc(50% - var(--top-notch-width)) 0%,calc(50% - var(--top-notch-width) + 20px) var(--top-notch-height),calc(50% + var(--top-notch-width) - 20px) var(--top-notch-height),calc(50% + var(--top-notch-width)) 0%,calc(100% - var(--corner-cut)) 0%,100% var(--corner-cut),100% calc(50% - var(--notch-width)),calc(100% - var(--notch-depth)) calc(50% - var(--notch-width) + 20px),calc(100% - var(--notch-depth)) calc(50% + var(--notch-width) - 20px),100% calc(50% + var(--notch-width)),100% calc(100% - var(--corner-cut)),calc(100% - var(--corner-cut)) 100%,var(--corner-cut) 100%,0% calc(100% - var(--corner-cut)),0% calc(50% + var(--notch-width)),var(--notch-depth) calc(50% + var(--notch-width) - 20px),var(--notch-depth) calc(50% - var(--notch-width) + 20px),0% calc(50% - var(--notch-width))
+    );
+    opacity: 0;
+    animation: fadeInFrame 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+}
+
+/* Slideshow Styles */
+.slideshow-backgrounds { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+.background-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out; }
+.background-slide.active { opacity: 1; }
+
+/* Scanline Overlay Effect */
+.scanline-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(to bottom,transparent,transparent 2px,rgba(0, 0, 0, 0.1) 2px,rgba(0, 0, 0, 0.1) 4px); pointer-events: none; z-index: 2; }
+
+/* Heading Styles */
+.heading-container {
+    position: absolute;
+    top: calc(var(--frame-inset) + 30px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 84px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 15;
+}
+
+.slide-heading {
+    position: absolute; margin: 0; font-family: "Zen Dots", sans-serif; font-weight: 1000;
+    font-size: clamp(2.5rem, 10vw, 6rem);
+    letter-spacing: 4px; text-transform: uppercase; opacity: 0; transition: opacity 1.5s ease-in-out;
+}
+.slide-heading.active { opacity: 1; }
+
+.gradient-1, .gradient-2, .gradient-3 { background-clip: text; -webkit-background-clip: text; color: transparent; }
+.gradient-1 { background-image: linear-gradient(to right, #ff0008, #ff6363); }
+.gradient-2 { background-image: linear-gradient(to right, #53FFFC, #FFFFFF); }
+.gradient-3 { background-image: linear-gradient(to right, #FFD753, #FFFFFF); }
+
+/* Styles for the futuristic text overlays */
+.frame-text {
+    position: absolute; font-family: 'Share Tech Mono', monospace; color: #ffffff66; font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase; z-index: 10; pointer-events: none; white-space: nowrap;
+    opacity: 0; animation: fadeInUI 1s ease-out 0.8s forwards;
+}
+.top-notch-text { top: 14px; left: 50%; transform: translateX(-50%); border-top: none; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; padding: 1px 8px; background-color: #050505; display: flex; align-items: center; }
+.left-side-text { top: 50%; left: var(--frame-inset); transform: translate(-50%, -50%) rotate(-90deg); }
+.right-side-text { top: 50%; right: var(--frame-inset); transform: translate(50%, -50%) rotate(90deg); }
+.flag-icon { height: 11px; width: auto; display: inline-block; }
+
+/* Scroll Down Arrow */
+.scroll-down-btn {
+    position: absolute; bottom: 5%; left: 50%; width: 60px; height: 60px;
+    cursor: pointer; z-index: 20; opacity: 0;
+    animation: fadeInUI 1s ease-out 1.2s forwards, bounce 2.5s infinite 2.5s;
+    transform: translateX(-50%);
+}
+.scroll-down-btn svg { width: 100%; height: 100%; transition: transform 0.3s ease; }
+.scroll-down-btn:hover svg { transform: scale(1.1); }
+
+/* Styles for the content that is revealed */
+.scroll-content { height: 100vh; display: flex; justify-content: center; align-items: center; padding: 40px; box-sizing: border-box; }
+.content-grid { text-align: center; max-width: 800px; width: 100%; }
+.content-grid h2 { font-family: 'Iceberg', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: 3px; color: #FFA500; text-transform: uppercase; margin-bottom: 1.5rem; }
+.content-grid p { font-family: 'Montserrat Alternates', sans-serif; font-size: clamp(1rem, 2.5vw, 1.2rem); line-height: 1.8; color: rgba(255, 255, 255, 0.75); margin-top: 1rem; }
+
+/* Spline Viewer Styling */
+spline-viewer { width: 100%; height: 400px; max-width: 500px; margin: 2rem auto; outline: none; }
+
+/* --- CHARACTER CAROUSEL STYLES --- */
+.character-carousel-section {
+    width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 50px 20px; box-sizing: border-box;
+}
+
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.carousel-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-slides { display: flex; transition: transform 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95); }
+.carousel-slide { flex: 0 0 100%; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; }
+.character-details { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+
+.character-name { font-family: "Zen Dots", sans-serif; font-size: 3rem; letter-spacing: 2px; margin: 0; }
+.character-image { width: 100%; max-width: 350px; height: auto; object-fit: contain; max-height: 55vh; }
+.ability-wrapper { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.ability-logo img { max-width: 100%; height: auto; max-height: 108px; }
+.ability-description { font-family: 'Montserrat Alternates', sans-serif; font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, 0.7); max-width: 300px; margin: 0; }
+
+.character-details > * { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+.carousel-slide.active .character-image { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+.carousel-slide.active .character-name { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+.carousel-slide.active .ability-wrapper { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+
+.select-character-btn {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 24px;
+    border: none;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.select-character-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.carousel-slide.active .select-character-btn {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.7s;
+}
+
+.carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%;
+    cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
+    transition: background-color 0.3s ease;
+}
+.carousel-btn:hover { background: rgba(255, 255, 255, 0.2); }
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+@keyframes fadeInFrame { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUI { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); } 40% { transform: translateY(-15px) translateX(-50%); } 60% { transform: translateY(-7px) translateX(-50%); } }
+
+@media (max-width: 768px) {
+    .heading-container { width: 90%; }
+    spline-viewer { height: 300px; }
+    .carousel-wrapper { max-width: 100%; }
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
+}
+
+@media (max-width: 480px) {
+    .frame-text { font-size: 9px; }
+    spline-viewer { height: 250px; }
+}
+
+/* --- DESKTOP-SPECIFIC STYLES --- */
+@media (min-width: 1024px) {
+    /* Widen the carousel for a more PC-familiar look */
+    .carousel-wrapper {
+        max-width: 800px;
+    }
+
+    .carousel-container {
+        max-width: 500px;
+    }
+
+    .character-name {
+        font-size: 4rem;
+    }
+
+    .character-image {
+        max-height: 60vh;
+    }
+
+    .ability-description {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 769px) {
+    /* These rules will override the inline styles in the HTML for desktop screens */
+    .background-slide:nth-of-type(1) {
+        background-image: url('path/to/your/desktop-image-1.jpg') !important;
+    }
+    .background-slide:nth-of-type(2) {
+        background-image: url('path/to/your/desktop-image-2.jpg') !important;
+    }
+    .background-slide:nth-of-type(3) {
+        background-image: url('path/to/your/desktop-image-3.jpg') !important;
+    }
+}
+

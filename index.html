@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Battle Royale</title>
+    <!-- Added Google Font for the futuristic text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <!-- UPDATED: Added necessary fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Iceberg&family=Montserrat+Alternates&family=Zen+Dots&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- This wrapper contains the entire initial screen and will be animated -->
+    <div class="viewport-wrapper">
+        <div class="clipped-container">
+            <!-- This wrapper holds our slideshow images -->
+            <div class="slideshow-backgrounds">
+                <!-- Each div is a separate slide. The 'active' class makes the first one visible. -->
+                <div class="background-slide active" style="background-image: url('lyra.jpg');"></div>
+                <div class="background-slide" style="background-image: url('flux.jpg');"></div>
+                <div class="background-slide" style="background-image: url('aria.jpeg');"></div>
+            </div>
+            <div class="scanline-overlay"></div>
+        </div>
+
+        <!-- NEW: Container for the animated headings -->
+        <div class="heading-container">
+            <h1 class="slide-heading gradient-1 active">EXAMRANX</h1>
+            <h1 class="slide-heading gradient-2">EXAMRANX</h1>
+            <h1 class="slide-heading gradient-3">EXAMRANX</h1>
+        </div>
+
+        <!-- Futuristic text overlays -->
+        <div class="frame-text top-notch-text">
+            [SERVER -&nbsp;<img src="https://flagcdn.com/w20/in.png" alt="Indian Flag" class="flag-icon">]
+        </div>
+        <div class="frame-text left-side-text">SYS_ID: 84X1-DELTA-7</div>
+        <div class="frame-text right-side-text">USER_RANK: UNCALIBRATED</div>
+
+        <!-- Scroll Down Arrow Button -->
+        <div class="scroll-down-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="73" height="73" viewBox="0 0 73 73" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M0 36.5C0 26.8196 3.84552 17.5357 10.6906 10.6906C17.5357 3.84552 26.8196 0 36.5 0C46.1804 0 55.4643 3.84552 62.3094 10.6906C69.1545 17.5357 73 26.8196 73 36.5C73 46.1804 69.1545 55.4643 62.3094 62.3094C55.4643 69.1545 46.1804 73 36.5 73C26.8196 73 17.5357 69.1545 10.6906 62.3094C3.84552 55.4643 0 46.1804 0 36.5ZM20.6064 31.1155L36.4942 46.72L52.3936 31.1155L50.3496 29.0277L36.4942 42.6262L22.6475 29.0248L20.6035 31.1126L20.6064 31.1155Z" fill="#ffffff99"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- This is the content that gets revealed on scroll -->
+    <section class="scroll-content">
+        <div class="content-grid">
+            <h2>THE BATTLEGROUND AWAITS</h2>
+            <!-- SPLINE 3D OBJECT -->
+            <spline-viewer url="https://prod.spline.design/OfBPrcqilB67fchU/scene.splinecode"></spline-viewer>
+            <p>Engage in real-time 1v1 quiz battles against fellow JEE aspirants. Master every concept, rise through the ranks, and claim your spot at the top. This is where preparation meets competition.</p>
+        </div>
+    </section>
+
+    <!-- Character Carousel Section -->
+    <section class="character-carousel-section">
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel-slides">
+                    <!-- Slide 1: Lyra -->
+                    <div class="carousel-slide active">
+                        <div class="character-details">
+                            <h2 class="character-name">LYRA</h2>
+                            <img src="lyra2.png" alt="Character Lyra" class="character-image">
+                            <div class="ability-wrapper">
+                                <div class="ability-logo">
+                                    <img src="lyralogo.png" width="138px" height="108px">
+                                </div>
+                                <p class="ability-description">Her ability grants them +20 seconds of extra time during quizzes, players a crucial edge.</p>
+                            </div>
+                            <!-- NEW: SELECT BUTTON -->
+                            <a href="https://practiso.me/battles" class="select-character-btn">SELECT & PROCEED</a>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Flux -->
+                    <div class="carousel-slide">
+                        <div class="character-details">
+                            <h2 class="character-name">FLUX</h2>
+                            <img src="flux2.png" alt="Character Flux" class="character-image">
+                            <div class="ability-wrapper">
+                                <div class="ability-logo">
+                                    <img src="fluxlogo.png" width="148px" height="128px">
+                                </div>
+                                <p class="ability-description">His ability rewards precision and speed — each correct answer subtracts 3 seconds from their final time.</p>
+                            </div>
+                            <!-- NEW: SELECT BUTTON -->
+                            <a href="https://practiso.me/battles" class="select-character-btn">SELECT & PROCEED</a>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Aria -->
+                    <div class="carousel-slide">
+                        <div class="character-details">
+                            <h2 class="character-name">ARIA</h2>
+                            <img src="aria2.png" alt="Character Aria" class="character-image">
+                            <div class="ability-wrapper">
+                                <div class="ability-logo">
+                                    <img src="arialogo.png" width="178px" height="138px">
+                                </div>
+                                <p class="ability-description">Her ability allows players to remove one incorrect option, increasing the odds of striking the right answer.</p>
+                            </div>
+                            <!-- NEW: SELECT BUTTON -->
+                            <a href="https://practiso.me/battles" class="select-character-btn">SELECT & PROCEED</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev-btn">&lt;</button>
+            <button class="carousel-btn next-btn">&gt;</button>
+        </div>
+    </section>
+
+    <!-- Spline Viewer Script -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.75/build/spline-viewer.js"></script>
+    
+    <!-- GSAP Library & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    
+    <!-- Your existing and new JS files -->
+    <script src="home.js"></script>
+    <script src="scroll-animation.js"></script>
+    <script src="carousel.js"></script>
+</body>
+</html>
+
