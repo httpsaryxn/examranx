@@ -220,13 +220,15 @@ spline-viewer { width: 100%; height: 400px; max-width: 500px; margin: 2rem auto;
 @media (min-width: 769px) {
     /* These rules will override the inline styles in the HTML for desktop screens */
     .background-slide:nth-of-type(1) {
-        background-image: url('path/to/your/desktop-image-1.jpg') !important;
+        background-image: url('lyradsk.jpg') !important;
     }
     .background-slide:nth-of-type(2) {
-        background-image: url('path/to/your/desktop-image-2.jpg') !important;
+        background-image: url('fluxdsk.jpg') !important;
     }
     .background-slide:nth-of-type(3) {
-        background-image: url('path/to/your/desktop-image-3.jpg') !important;
+        background-image: url('ariadsk.jpg') !important;
     }
 }
+
+
 
